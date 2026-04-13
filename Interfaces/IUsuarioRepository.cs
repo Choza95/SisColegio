@@ -2,7 +2,7 @@
 
 namespace SisColegio.Interfaces
 {
-    public interface IUsuarioRepository
+    public interface IUsuarioRepository : IGenericRepository<Usuario>
     {
         Task<Usuario?> GetByEmailAsync(string email);
     }

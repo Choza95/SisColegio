@@ -51,7 +51,7 @@ public partial class MiBaseContext : DbContext
             entity.HasKey(e => e.Id).HasName("PK__Asignaci__3214EC078EA2383D");
 
             entity.Property(e => e.Borrado).HasDefaultValue(false);
-            entity.Property(e => e.FechaCreacion)
+            entity.Property(e => e.FechaRegistro)
                 .HasDefaultValueSql("(getdate())")
                 .HasColumnType("datetime");
 
@@ -73,7 +73,7 @@ public partial class MiBaseContext : DbContext
             entity.HasKey(e => e.Id).HasName("PK__Cursos__3214EC07B142591F");
 
             entity.Property(e => e.Borrado).HasDefaultValue(false);
-            entity.Property(e => e.FechaCreacion)
+            entity.Property(e => e.FechaRegistro)
                 .HasDefaultValueSql("(getdate())")
                 .HasColumnType("datetime");
             entity.Property(e => e.Nombre)
@@ -90,7 +90,7 @@ public partial class MiBaseContext : DbContext
                 .HasMaxLength(500)
                 .IsUnicode(false);
             entity.Property(e => e.Fecha).HasColumnType("datetime");
-            entity.Property(e => e.FechaCreacion)
+            entity.Property(e => e.FechaRegistro)
                 .HasDefaultValueSql("(getdate())")
                 .HasColumnType("datetime");
             entity.Property(e => e.Tipo)
@@ -119,7 +119,7 @@ public partial class MiBaseContext : DbContext
             entity.Property(e => e.Ci)
                 .HasMaxLength(30)
                 .IsUnicode(false);
-            entity.Property(e => e.FechaCreacion)
+            entity.Property(e => e.FechaRegistro)
                 .HasDefaultValueSql("(getdate())")
                 .HasColumnType("datetime");
             entity.Property(e => e.Nombre)
@@ -143,7 +143,7 @@ public partial class MiBaseContext : DbContext
             entity.Property(e => e.Descripcion)
                 .HasMaxLength(500)
                 .IsUnicode(false);
-            entity.Property(e => e.FechaCreacion)
+            entity.Property(e => e.FechaRegistro)
                 .HasDefaultValueSql("(getdate())")
                 .HasColumnType("datetime");
             entity.Property(e => e.FechaEntrega).HasColumnType("datetime");
@@ -170,7 +170,7 @@ public partial class MiBaseContext : DbContext
             entity.HasKey(e => e.Id).HasName("PK__Inscripc__3214EC07372D2144");
 
             entity.Property(e => e.Borrado).HasDefaultValue(false);
-            entity.Property(e => e.FechaCreacion)
+            entity.Property(e => e.FechaRegistro)
                 .HasDefaultValueSql("(getdate())")
                 .HasColumnType("datetime");
 
@@ -188,7 +188,7 @@ public partial class MiBaseContext : DbContext
             entity.HasKey(e => e.Id).HasName("PK__Materias__3214EC0782D14F78");
 
             entity.Property(e => e.Borrado).HasDefaultValue(false);
-            entity.Property(e => e.FechaCreacion)
+            entity.Property(e => e.FechaRegistro)
                 .HasDefaultValueSql("(getdate())")
                 .HasColumnType("datetime");
             entity.Property(e => e.Nombre)
@@ -201,7 +201,7 @@ public partial class MiBaseContext : DbContext
             entity.HasKey(e => e.Id).HasName("PK__Notas__3214EC0713A90A31");
 
             entity.Property(e => e.Borrado).HasDefaultValue(false);
-            entity.Property(e => e.FechaCreacion)
+            entity.Property(e => e.FechaRegistro)
                 .HasDefaultValueSql("(getdate())")
                 .HasColumnType("datetime");
             entity.Property(e => e.Nota1)
@@ -230,7 +230,7 @@ public partial class MiBaseContext : DbContext
             entity.Property(e => e.Ci)
                 .HasMaxLength(30)
                 .IsUnicode(false);
-            entity.Property(e => e.FechaCreacion)
+            entity.Property(e => e.FechaRegistro)
                 .HasDefaultValueSql("(getdate())")
                 .HasColumnType("datetime");
             entity.Property(e => e.NombreCompleto)
@@ -258,7 +258,7 @@ public partial class MiBaseContext : DbContext
             entity.Property(e => e.Ci)
                 .HasMaxLength(30)
                 .IsUnicode(false);
-            entity.Property(e => e.FechaCreacion)
+            entity.Property(e => e.FechaRegistro)
                 .HasDefaultValueSql("(getdate())")
                 .HasColumnType("datetime");
             entity.Property(e => e.Nombre)
@@ -278,7 +278,7 @@ public partial class MiBaseContext : DbContext
             entity.HasKey(e => e.Id).HasName("PK__Trimestr__3214EC07914E8A71");
 
             entity.Property(e => e.Borrado).HasDefaultValue(false);
-            entity.Property(e => e.FechaCreacion)
+            entity.Property(e => e.FechaRegistro)
                 .HasDefaultValueSql("(getdate())")
                 .HasColumnType("datetime");
             entity.Property(e => e.Nombre)
@@ -297,7 +297,7 @@ public partial class MiBaseContext : DbContext
             entity.Property(e => e.Email)
                 .HasMaxLength(150)
                 .IsUnicode(false);
-            entity.Property(e => e.FechaCreacion)
+            entity.Property(e => e.FechaRegistro)
                 .HasDefaultValueSql("(getdate())")
                 .HasColumnType("datetime");
             entity.Property(e => e.NombreUsuario)

@@ -17,7 +17,6 @@ public partial class Profesore : BaseEntity
 
     public string? Titulo { get; set; }
 
-    public DateTime? FechaCreacion { get; set; }
 
     public virtual ICollection<Asignacione> Asignaciones { get; set; } = new List<Asignacione>();
 

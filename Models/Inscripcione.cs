@@ -11,7 +11,6 @@ public partial class Inscripcione : BaseEntity
 
     public DateOnly? FechaInscrito { get; set; }
 
-    public DateTime? FechaCreacion { get; set; }
 
     public virtual Curso? IdCursoNavigation { get; set; }
 

@@ -17,7 +17,6 @@ public partial class Estudiante : BaseEntity
 
     public int? Edad { get; set; }
 
-    public DateTime? FechaCreacion { get; set; }
 
     public virtual ICollection<Disciplina> Disciplinas { get; set; } = new List<Disciplina>();
 

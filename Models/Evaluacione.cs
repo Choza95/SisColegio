@@ -21,8 +21,6 @@ public partial class Evaluacione : BaseEntity
 
     public DateTime? FechaEntrega { get; set; }
 
-    public DateTime? FechaCreacion { get; set; }
-
     public virtual Asignacione? IdAsignacionNavigation { get; set; }
 
     public virtual Trimestre? IdTrimestreNavigation { get; set; }

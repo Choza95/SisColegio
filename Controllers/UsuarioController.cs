@@ -1,4 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using SisColegio.Dtos;
+using SisColegio.Interfaces;
+using SisColegio.Models;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -8,36 +11,69 @@ namespace SisColegio.Controllers
     [ApiController]
     public class UsuarioController : ControllerBase
     {
-        // GET: api/<UsuarioController>
+        private readonly IUsuarioService _usuarioService;
+
+        public UsuarioController(IUsuarioService usuarioService)
+        {
+            _usuarioService = usuarioService;
+        }
+
         [HttpGet]
-        public IEnumerable<string> Get()
+        public async Task<IActionResult> GetAll()
         {
-            return new string[] { "value1", "value2" };
+            var lista = await _usuarioService.GetAllAsync();
+            return Ok(lista);
         }
 
-        // GET api/<UsuarioController>/5
-        [HttpGet("{id}")]
-        public string Get(int id)
+        [HttpGet("{id:int}")]
+        public async Task<IActionResult> GetById(int id)
         {
-            return "value";
+            var usuario = await _usuarioService.GetByIdAsync(id);
+
+            if (usuario == null)
+                return NotFound(new { mensaje = "Usuario no encontrado" });
+
+            return Ok(usuario);
         }
 
-        // POST api/<UsuarioController>
         [HttpPost]
-        public void Post([FromBody] string value)
+        public async Task<IActionResult> Create([FromBody] UsuarioCreateDto dto)
         {
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+
+            var creado = await _usuarioService.AddAsync(dto);
+
+            return CreatedAtAction(nameof(GetById), new { id = creado.Id },creado);
         }
 
-        // PUT api/<UsuarioController>/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        [HttpPut("{id:int}")]
+        public async Task<IActionResult> Update(int id, [FromBody] UsuarioUpdateDto dto)
         {
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+
+            var actualizado = await _usuarioService.UpdateAsync(id, dto);
+
+            if (!actualizado)
+                return BadRequest(new
+                {
+                    mensaje = "No se pudo actualizar el usuario"
+                });
+
+
+            return NoContent();
         }
 
-        // DELETE api/<UsuarioController>/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
+        [HttpDelete("{id:int}")]
+        public async Task<IActionResult> Delete(int id)
         {
+            var eliminado = await _usuarioService.DeleteAsync(id);
+
+            if (!eliminado)
+                return NotFound(new { mensaje = "Usuario no encontrado" });
+
+            return NoContent();
         }
     }
 }

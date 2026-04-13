@@ -15,8 +15,6 @@ public partial class Disciplina : BaseEntity
 
     public DateTime? Fecha { get; set; }
 
-    public DateTime? FechaCreacion { get; set; }
-
     public virtual Asignacione? IdAsignacionNavigation { get; set; }
 
     public virtual Estudiante? IdEstudianteNavigation { get; set; }

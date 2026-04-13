@@ -11,7 +11,6 @@ public partial class Nota : BaseEntity
 
     public decimal? Nota1 { get; set; }
 
-    public DateTime? FechaCreacion { get; set; }
 
     public virtual Estudiante? IdEstudianteNavigation { get; set; }
 

@@ -13,7 +13,6 @@ public partial class Usuario : BaseEntity
 
     public string? Rol { get; set; }
 
-    public DateTime? FechaCreacion { get; set; }
 
     public virtual Estudiante? Estudiante { get; set; }
 

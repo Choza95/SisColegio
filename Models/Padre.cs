@@ -13,7 +13,6 @@ public partial class Padre : BaseEntity
 
     public string? Ci { get; set; }
 
-    public DateTime? FechaCreacion { get; set; }
 
     public virtual ICollection<Estudiante> Estudiantes { get; set; } = new List<Estudiante>();
 
