@@ -1,6 +1,5 @@
 using Microsoft.OpenApi;
 using SisColegio.Interfaces;
-using SisColegio.Mapping;
 using SisColegio.Repositories;
 
 var builder = WebApplication.CreateBuilder(args);
