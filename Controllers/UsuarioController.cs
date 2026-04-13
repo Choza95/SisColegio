@@ -31,7 +31,7 @@ namespace SisColegio.Controllers
             var usuario = await _usuarioService.GetByIdAsync(id);
 
             if (usuario == null)
-                return NotFound(new { mensaje = "Usuario no encontrado" });
+                return NotFound(new { mensaje = "Usuario no encontrado PRUEBAAAAAAAAAAAAAA" });
 
             return Ok(usuario);
         }
