@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace SisColegio.Models;
 
-public partial class Profesore : BaseEntity
+public partial class Profesores : BaseEntity
 {
     public int? IdUsuario { get; set; }
 

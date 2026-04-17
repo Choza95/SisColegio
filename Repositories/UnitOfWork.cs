@@ -7,6 +7,7 @@ namespace SisColegio.Repositories
     {
         private readonly MiBaseContext _context;
         private IUsuarioRepository? _usuarioRepository;
+        private IProfesoresRepository? _profesoresRepository;
 
         public UnitOfWork(MiBaseContext context)
         {
@@ -14,6 +15,9 @@ namespace SisColegio.Repositories
         }
         public IUsuarioRepository Usuarios
            => _usuarioRepository ??= new UsuarioRepository(_context);
+        public IProfesoresRepository Profesores
+          => _profesoresRepository ??= new ProfesoresRepository(_context);
+
 
         public async Task<int> SaveChangesAsync()
         {

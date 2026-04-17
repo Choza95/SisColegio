@@ -18,5 +18,5 @@ public partial class Usuario : BaseEntity
 
     public virtual Padre? Padre { get; set; }
 
-    public virtual Profesore? Profesore { get; set; }
+    public virtual Profesores? Profesores { get; set; }
 }
