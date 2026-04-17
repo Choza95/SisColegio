@@ -7,63 +7,84 @@ namespace SisColegio.Services
 {
     public class UsuarioService : IUsuarioService
     {
-        private readonly IUnitOfWork _unitOfWork; private readonly IMapper _mapper;
+    
+        private readonly IUnitOfWork _unitOfWork;
+        private readonly IMapper _mapper;
+        private readonly IPasswordHasher _passwordHasher;
 
-        public UsuarioService(IUnitOfWork unitOfWork, IMapper mapper)
+        public UsuarioService(
+            IUnitOfWork unitOfWork,
+            IMapper mapper,
+            IPasswordHasher passwordHasher)
         {
             _unitOfWork = unitOfWork;
             _mapper = mapper;
+            _passwordHasher = passwordHasher;
         }
 
         public async Task<IEnumerable<UsuarioDto>> GetAllAsync()
         {
-            var usuarios = await _unitOfWork.Usuarios.GetAllAsync(); return _mapper.Map<IEnumerable<UsuarioDto>>(usuarios);
+            var usuarios = await _unitOfWork.Usuarios.GetAllAsync();
+            return _mapper.Map<IEnumerable<UsuarioDto>>(usuarios);
         }
 
         public async Task<UsuarioDto?> GetByIdAsync(int id)
         {
             var usuario = await _unitOfWork.Usuarios.GetByIdAsync(id);
-
-            if (usuario == null) return null;
+            if (usuario == null)
+                return null;
 
             return _mapper.Map<UsuarioDto>(usuario);
         }
 
         public async Task<UsuarioDto> AddAsync(UsuarioCreateDto dto)
         {
+            var existe = await _unitOfWork.Usuarios.GetByEmailAsync(dto.Email);
+            if (existe != null)
+                throw new Exception("Ya existe un usuario con ese email.");
+
             var usuario = _mapper.Map<Usuario>(dto);
 
-            await _unitOfWork.Usuarios.AddAsync(usuario); await _unitOfWork.SaveChangesAsync();
+            usuario.Clave = _passwordHasher.HashPassword(dto.Clave);
+
+            await _unitOfWork.Usuarios.AddAsync(usuario);
+            await _unitOfWork.SaveChangesAsync();
 
             return _mapper.Map<UsuarioDto>(usuario);
         }
 
         public async Task<bool> UpdateAsync(int id, UsuarioUpdateDto dto)
         {
-            if (id != dto.Id) return false;
+            if (id != dto.Id)
+                return false;
 
             var usuario = await _unitOfWork.Usuarios.GetByIdAsync(id);
+            if (usuario == null)
+                return false;
 
-            if (usuario == null) return false;
+            usuario.NombreUsuario = dto.NombreUsuario;
+            usuario.Email = dto.Email;
+            usuario.Rol = dto.Rol;
 
-            usuario.NombreUsuario = dto.NombreUsuario; usuario.Email = dto.Email; usuario.Clave = dto.Clave; usuario.Rol = dto.Rol;
+            if (!string.IsNullOrWhiteSpace(dto.Clave))
+            {
+                usuario.Clave = _passwordHasher.HashPassword(dto.Clave);
+            }
 
-            _unitOfWork.Usuarios.Update(usuario); await _unitOfWork.SaveChangesAsync();
-
+            _unitOfWork.Usuarios.Update(usuario);
+            await _unitOfWork.SaveChangesAsync();
             return true;
         }
 
         public async Task<bool> DeleteAsync(int id)
         {
             var usuario = await _unitOfWork.Usuarios.GetByIdAsync(id);
-
-            if (usuario == null) return false;
+            if (usuario == null)
+                return false;
 
             await _unitOfWork.Usuarios.DeleteAsync(id);
             await _unitOfWork.SaveChangesAsync();
-
             return true;
         }
     }
 }
-
