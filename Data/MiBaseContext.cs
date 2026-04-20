@@ -34,7 +34,7 @@ public partial class MiBaseContext : DbContext
 
     public virtual DbSet<Padre> Padres { get; set; }
 
-    public virtual DbSet<Profesore> Profesores { get; set; }
+    public virtual DbSet<Profesores> Profesores { get; set; }
 
     public virtual DbSet<Trimestre> Trimestres { get; set; }
 
@@ -240,7 +240,7 @@ public partial class MiBaseContext : DbContext
                 .HasConstraintName("FK__Padres__IdUsuari__2B3F6F97");
         });
 
-        modelBuilder.Entity<Profesore>(entity =>
+        modelBuilder.Entity<Profesores>(entity =>
         {
             entity.HasKey(e => e.Id).HasName("PK__Profesor__3214EC079B2A5ABE");
 
@@ -266,8 +266,8 @@ public partial class MiBaseContext : DbContext
                 .HasMaxLength(100)
                 .IsUnicode(false);
 
-            entity.HasOne(d => d.IdUsuarioNavigation).WithOne(p => p.Profesore)
-                .HasForeignKey<Profesore>(d => d.IdUsuario)
+            entity.HasOne(d => d.IdUsuarioNavigation).WithOne(p => p.Profesores)
+                .HasForeignKey<Profesores>(d => d.IdUsuario)
                 .HasConstraintName("FK__Profesore__IdUsu__30F848ED");
         });
 

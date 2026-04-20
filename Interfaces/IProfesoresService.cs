@@ -9,5 +9,6 @@ namespace SisColegio.Interfaces
         Task<ProfesoresDto> AddAsync(ProfesoresDto dto);
         Task<bool> UpdateAsync(int id, ProfesoresDto dto);
         Task<bool> DeleteAsync(int id);
+        
     }
 }

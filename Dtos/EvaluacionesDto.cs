@@ -1,0 +1,22 @@
+﻿namespace SisColegio.Dtos
+{
+    public class EvaluacionesDto
+    {
+        public int? IdAsignacion { get; set; }
+            
+        public int? IdTrimestre { get; set; }
+        public int Id { get; set; }
+
+        public string? Titulo { get; set; }
+
+        public string? Descripcion { get; set; }
+
+        public string? Tipo { get; set; }
+
+        public decimal? Porcentaje { get; set; }
+
+        public DateTime? FechaPublicacion { get; set; }
+
+        public DateTime? FechaEntrega { get; set; }
+    }
+}

@@ -20,5 +20,5 @@ public partial class Asignacione : BaseEntity
 
     public virtual Materia? IdMateriaNavigation { get; set; }
 
-    public virtual Profesore? IdProfesorNavigation { get; set; }
+    public virtual Profesores? IdProfesorNavigation { get; set; }
 }

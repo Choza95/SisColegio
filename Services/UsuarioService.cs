@@ -37,21 +37,21 @@ namespace SisColegio.Services
             return _mapper.Map<UsuarioDto>(usuario);
         }
 
-        public async Task<UsuarioDto> AddAsync(UsuarioCreateDto dto)
-        {
-            var existe = await _unitOfWork.Usuarios.GetByEmailAsync(dto.Email);
-            if (existe != null)
-                throw new Exception("Ya existe un usuario con ese email.");
+            public async Task<UsuarioDto> AddAsync(UsuarioCreateDto dto)
+            {
+                var existe = await _unitOfWork.Usuarios.GetByEmailAsync(dto.Email);
+                if (existe != null)
+                    throw new Exception("Ya existe un usuario con ese email.");
 
-            var usuario = _mapper.Map<Usuario>(dto);
+                var usuario = _mapper.Map<Usuario>(dto);
 
-            usuario.Clave = _passwordHasher.HashPassword(dto.Clave);
+                usuario.Clave = _passwordHasher.HashPassword(dto.Clave);
 
-            await _unitOfWork.Usuarios.AddAsync(usuario);
-            await _unitOfWork.SaveChangesAsync();
+                await _unitOfWork.Usuarios.AddAsync(usuario);
+                await _unitOfWork.SaveChangesAsync();
 
-            return _mapper.Map<UsuarioDto>(usuario);
-        }
+                return _mapper.Map<UsuarioDto>(usuario);
+            }
 
         public async Task<bool> UpdateAsync(int id, UsuarioUpdateDto dto)
         {

@@ -3,31 +3,31 @@ using Microsoft.AspNetCore.Mvc;
 using SisColegio.Dtos;
 using SisColegio.Interfaces;
 
-namespace ApiUsuarios.Controllers
+namespace ApiProfesores.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
     
-    public class UsuarioController : ControllerBase
+    public class ProfesoresController : ControllerBase
     {
-        private readonly IUsuarioService _usuarioService;
+        private readonly IProfesoresService _profesoresService;
 
-        public UsuarioController(IUsuarioService usuarioService)
+        public ProfesoresController(IProfesoresService profesoresService)
         {
-            _usuarioService = usuarioService;
+            _profesoresService = profesoresService;
         }
 
         [HttpGet]
         public async Task<IActionResult> GetAll()
         {
-            var lista = await _usuarioService.GetAllAsync();
+            var lista = await _profesoresService.GetAllAsync();
             return Ok(lista);
         }
 
         [HttpGet("{id:int}")]
         public async Task<IActionResult> GetById(int id)
         {
-            var usuario = await _usuarioService.GetByIdAsync(id);
+            var usuario = await _profesoresService.GetByIdAsync(id);
             if (usuario == null)
                 return NotFound(new { mensaje = "Usuario no encontrado" });
 
@@ -36,24 +36,24 @@ namespace ApiUsuarios.Controllers
 
         [HttpPost]
         [AllowAnonymous]
-        public async Task<IActionResult> Create([FromBody] UsuarioCreateDto dto)
+        public async Task<IActionResult> Create([FromBody] ProfesoresDto dto)
         {
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
 
-            var creado = await _usuarioService.AddAsync(dto);
+            var creado = await _profesoresService.AddAsync(dto);
             return CreatedAtAction(nameof(GetById), new { id = creado.Id }, creado);
         }
 
         [HttpPut("{id:int}")]
-        public async Task<IActionResult> Update(int id, [FromBody] UsuarioUpdateDto dto)
+        public async Task<IActionResult> Update(int id, [FromBody] ProfesoresDto dto)
         {
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
 
-            var actualizado = await _usuarioService.UpdateAsync(id, dto);
+            var actualizado = await _profesoresService.UpdateAsync(id, dto);
             if (!actualizado)
-                return BadRequest(new { mensaje = "No se pudo actualizar el usuario" });
+                return BadRequest(new { mensaje = "No se pudo actualizar el profesor" });
 
             return NoContent();
         }
@@ -61,9 +61,9 @@ namespace ApiUsuarios.Controllers
         [HttpDelete("{id:int}")]
         public async Task<IActionResult> Delete(int id)
         {
-            var eliminado = await _usuarioService.DeleteAsync(id);
+            var eliminado = await _profesoresService.DeleteAsync(id);
             if (!eliminado)
-                return NotFound(new { mensaje = "Usuario no encontrado" });
+                return NotFound(new { mensaje = "Profesor no encontrado" });
 
             return NoContent();
         }

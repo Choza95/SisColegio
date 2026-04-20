@@ -10,6 +10,7 @@ using Scalar.AspNetCore;
 using System.Text;
 using SisColegio.Data;
 
+
 var builder = WebApplication.CreateBuilder(args);
 
 // =========================
@@ -72,6 +73,28 @@ builder.Services.AddScoped<IUsuarioService, UsuarioService>();
 builder.Services.AddScoped<IPasswordHasher, PasswordHasherService>();
 builder.Services.AddScoped<ITokenService, TokenService>();
 builder.Services.AddScoped<IAuthService, AuthService>();
+builder.Services.AddScoped<IProfesoresRepository, ProfesoresRepository>();
+builder.Services.AddScoped<IProfesoresService, ProfesoresService>();
+builder.Services.AddScoped<ITrimestreRepository, TrimestreRepository>();
+builder.Services.AddScoped<ITrimestreService, TrimestreService>();
+builder.Services.AddScoped<IPadreRepository, PadreRepository>();
+builder.Services.AddScoped<IPadreService, PadreService>();
+builder.Services.AddScoped<INotaRepository, NotaRepository>();
+builder.Services.AddScoped<INotaService, NotaService>();
+builder.Services.AddScoped<IMateriaRepository, MateriaRepository>();
+builder.Services.AddScoped<IMateriaService, MateriaService>();
+builder.Services.AddScoped<IInscripcionesRepository, InscripcionesRepository>();
+builder.Services.AddScoped<IInscripcionesService, InscripcionesService>();
+builder.Services.AddScoped<IEvaluacionesRepository, EvaluacionesRepository>();
+builder.Services.AddScoped<IEvaluacionesService, EvaluacionesService>();
+builder.Services.AddScoped<IEstudiantesRepository, EstudianteRepository>();
+builder.Services.AddScoped<IEstudiantesService, EstudiantesService>();
+builder.Services.AddScoped<IDisciplinaRepository, DisciplinaRepository>();
+builder.Services.AddScoped<IDisciplinaService, DisciplinaService>();
+builder.Services.AddScoped<ICursoRepository, CursoRepository>();
+builder.Services.AddScoped<ICursoService, CursoService>();
+builder.Services.AddScoped<IAsignacioneRepository, AsignacioneRepository>();
+builder.Services.AddScoped<IAsignacioneService, AsignacioneService>();
 
 // =========================
 // AutoMapper v16
