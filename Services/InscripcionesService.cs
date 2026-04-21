@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using SisColegio.Data;
 using SisColegio.Dtos;
 using SisColegio.Interfaces;
 using SisColegio.Models;
@@ -72,5 +73,15 @@ namespace SisColegio.Services
             await _unitOfWork.SaveChangesAsync();
             return true;
         }
+
+        public async Task<ApiResponse<IEnumerable<InscripcionesDto>>> GetAllAsync(PostQueryFilter filter)
+        {
+            var inscripciones = await _unitOfWork.Inscripciones.GetAllAsync(filter);
+            var inscripcionesDto = _mapper.Map<IEnumerable<InscripcionesDto>>(inscripciones);
+
+            return new ApiResponse<IEnumerable<InscripcionesDto>>(inscripcionesDto, inscripciones.MetaData);
+        }
+
+
     }
 }

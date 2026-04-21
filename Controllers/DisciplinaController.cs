@@ -17,8 +17,14 @@ namespace ApiDisciplina.Controllers
         {
             _disciplinaService = disciplinaService;
         }
-
         [HttpGet]
+        public async Task<IActionResult> GetAll([FromQuery] PostQueryFilter filter)
+        {
+            var response = await _disciplinaService.GetAllAsync(filter);
+            return Ok(response);
+        }
+
+        [HttpGet("ObtenerTodos")]
         public async Task<IActionResult> GetAll()
         {
             var lista = await _disciplinaService.GetAllAsync();

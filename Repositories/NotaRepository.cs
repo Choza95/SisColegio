@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using SisColegio.Data;
+using SisColegio.Dtos;
 using SisColegio.Interfaces;
 using SisColegio.Models;
 
@@ -11,11 +12,16 @@ namespace SisColegio.Repositories
         public NotaRepository(MiBaseContext context) : base(context)
         {
         }
-        //public async Task<Nota?> GetByEmailAsync(string email)
-        //{
-        //    return await _context.Notas
-        //        .AsNoTracking()
-        //        .FirstOrDefaultAsync(x => x.Email == email && x.Borrado == false);
-        //}
+        public async Task<PagedList<Nota>> GetAllAsync(PostQueryFilter filter)
+        {
+            var query = GetAllAsQueryable();
+
+            if (!string.IsNullOrWhiteSpace(filter.Buscar))
+            {
+                var buscar = filter.Buscar.ToLower();              
+            }
+
+            return await PagedList<Nota>.CreateAsync(query, filter.PageNumber, filter.PageSize);
+        }
     }
 }

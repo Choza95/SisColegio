@@ -17,8 +17,14 @@ namespace ApiEvaluaciones.Controllers
         {
             _evaluacionesService = evaluacionesService;
         }
-
         [HttpGet]
+        public async Task<IActionResult> GetAll([FromQuery] PostQueryFilter filter)
+        {
+            var response = await _evaluacionesService.GetAllAsync(filter);
+            return Ok(response);
+        }
+
+        [HttpGet("ObtenerTodos")]
         public async Task<IActionResult> GetAll()
         {
             var lista = await _evaluacionesService.GetAllAsync();

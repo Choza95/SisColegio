@@ -17,8 +17,14 @@ namespace ApiAsignacione.Controllers
         {
             _asignacioneService = asignacioneService;
         }
-
         [HttpGet]
+        public async Task<IActionResult> GetAll([FromQuery] PostQueryFilter filter)
+        {
+            var response = await _asignacioneService.GetAllAsync(filter);
+            return Ok(response);
+        }
+
+        [HttpGet("ObtenerTodos")]
         public async Task<IActionResult> GetAll()
         {
             var lista = await _asignacioneService.GetAllAsync();

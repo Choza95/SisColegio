@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using SisColegio.Data;
+using SisColegio.Dtos;
 using SisColegio.Interfaces;
 using SisColegio.Models;
 
@@ -17,6 +18,24 @@ namespace SisColegio.Repositories
                 .AsNoTracking()
                 .FirstOrDefaultAsync(x => x.Email == email && x.Borrado == false);
         }
+
+
+        public async Task<PagedList<Usuario>> GetAllAsync(PostQueryFilter filter)
+        {
+            var query = GetAllAsQueryable();
+
+            if (!string.IsNullOrWhiteSpace(filter.Buscar))
+            {
+                var buscar = filter.Buscar.ToLower();
+
+                query = query.Where(x =>
+                    x.Email.ToLower().Contains(buscar) ||
+                    x.NombreUsuario.ToLower().Contains(buscar) );
+            }
+
+            return await PagedList<Usuario>.CreateAsync(query, filter.PageNumber, filter.PageSize);
+        }
+
     }
 }
 

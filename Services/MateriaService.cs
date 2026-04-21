@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using SisColegio.Data;
 using SisColegio.Dtos;
 using SisColegio.Interfaces;
 using SisColegio.Models;
@@ -71,6 +72,14 @@ namespace SisColegio.Services
             await _unitOfWork.Materia.DeleteAsync(id);
             await _unitOfWork.SaveChangesAsync();
             return true;
+        }
+
+        public async Task<ApiResponse<IEnumerable<MateriaDto>>> GetAllAsync(PostQueryFilter filter)
+        {
+            var materias = await _unitOfWork.Materia.GetAllAsync(filter);
+            var materiasDto = _mapper.Map<IEnumerable<MateriaDto>>(materias);
+
+            return new ApiResponse<IEnumerable<MateriaDto>>(materiasDto, materias.MetaData);
         }
     }
 }

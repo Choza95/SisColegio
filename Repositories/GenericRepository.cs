@@ -52,6 +52,17 @@ namespace SisColegio.Repositories
                 _entities.Update(entity);
             }
         }
+
+
+        public IQueryable<T> GetAllAsQueryable()
+        {
+            return _entities
+                .AsNoTracking()
+                .Where(x => x.Borrado == false)
+                .OrderByDescending(x => x.Id)
+                .AsQueryable();
+        }
+
     }
 }
 

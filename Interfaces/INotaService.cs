@@ -1,4 +1,5 @@
-﻿using SisColegio.Dtos;
+﻿using SisColegio.Data;
+using SisColegio.Dtos;
 
 namespace SisColegio.Interfaces
 {
@@ -9,6 +10,9 @@ namespace SisColegio.Interfaces
         Task<NotaDto> AddAsync(NotaDto dto);
         Task<bool> UpdateAsync(int id, NotaDto dto);
         Task<bool> DeleteAsync(int id);
-        
+
+        Task<ApiResponse<IEnumerable<NotaDto>>> GetAllAsync(PostQueryFilter filter);
+
+
     }
 }

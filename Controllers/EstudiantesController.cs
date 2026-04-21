@@ -17,8 +17,14 @@ namespace ApiEstudiantes.Controllers
         {
             _estudiantesService = estudiantesService;
         }
-
         [HttpGet]
+        public async Task<IActionResult> GetAll([FromQuery] PostQueryFilter filter)
+        {
+            var response = await _estudiantesService.GetAllAsync(filter);
+            return Ok(response);
+        }
+
+        [HttpGet("ObtenerTodos")]
         public async Task<IActionResult> GetAll()
         {
             var lista = await _estudiantesService.GetAllAsync();

@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using SisColegio.Dtos;
 using SisColegio.Interfaces;
+using SisColegio.Services;
 
 namespace ApiTrimestre.Controllers
 {
@@ -17,7 +18,15 @@ namespace ApiTrimestre.Controllers
             _trimestreService = trimestreService;
         }
 
+
         [HttpGet]
+        public async Task<IActionResult> GetAll([FromQuery] PostQueryFilter filter)
+        {
+            var response = await _trimestreService.GetAllAsync(filter);
+            return Ok(response);
+        }
+
+        [HttpGet("ObtenerTodos")]
         public async Task<IActionResult> GetAll()
         {
             var lista = await _trimestreService.GetAllAsync();

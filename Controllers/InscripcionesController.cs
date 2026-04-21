@@ -8,7 +8,7 @@ namespace ApiInscripciones.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
-    
+
     public class InscripcionesController : ControllerBase
     {
         private readonly IInscripcionesService _inscripcionesService;
@@ -19,6 +19,13 @@ namespace ApiInscripciones.Controllers
         }
 
         [HttpGet]
+        public async Task<IActionResult> GetAll([FromQuery] PostQueryFilter filter)
+        {
+            var response = await _inscripcionesService.GetAllAsync(filter);
+            return Ok(response);
+        }
+
+        [HttpGet("ObtenerTodos")]
         public async Task<IActionResult> GetAll()
         {
             var lista = await _inscripcionesService.GetAllAsync();
@@ -68,5 +75,7 @@ namespace ApiInscripciones.Controllers
 
             return NoContent();
         }
+
+
     }
 }

@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Microsoft.VisualBasic;
+using SisColegio.Data;
 using SisColegio.Dtos;
 using SisColegio.Interfaces;
 using SisColegio.Models;
@@ -76,6 +77,15 @@ namespace SisColegio.Services
             await _unitOfWork.Trimestre.DeleteAsync(id);
             await _unitOfWork.SaveChangesAsync();
             return true;
+        }
+
+
+        public async Task<ApiResponse<IEnumerable<TrimestreDto>>> GetAllAsync(PostQueryFilter filter)
+        {
+            var trimestres = await _unitOfWork.Trimestre.GetAllAsync(filter);
+            var trimestresDto = _mapper.Map<IEnumerable<TrimestreDto>>(trimestres);
+
+            return new ApiResponse<IEnumerable<TrimestreDto>>(trimestresDto, trimestres.MetaData);
         }
     }
 }

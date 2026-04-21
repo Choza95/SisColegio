@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using SisColegio.Dtos;
 using SisColegio.Interfaces;
+using SisColegio.Services;
 
 namespace ApiPadre.Controllers
 {
@@ -16,8 +17,14 @@ namespace ApiPadre.Controllers
         {
             _padreService = padreService;
         }
-
         [HttpGet]
+        public async Task<IActionResult> GetAll([FromQuery] PostQueryFilter filter)
+        {
+            var response = await _padreService.GetAllAsync(filter);
+            return Ok(response);
+        }
+
+        [HttpGet("ObtenerTodos")]
         public async Task<IActionResult> GetAll()
         {
             var lista = await _padreService.GetAllAsync();

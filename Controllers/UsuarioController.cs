@@ -17,7 +17,7 @@ namespace ApiUsuarios.Controllers
             _usuarioService = usuarioService;
         }
 
-        [HttpGet]
+        [HttpGet("ObtenerTodos")]
         public async Task<IActionResult> GetAll()
         {
             var lista = await _usuarioService.GetAllAsync();
@@ -67,5 +67,14 @@ namespace ApiUsuarios.Controllers
 
             return NoContent();
         }
+
+
+        [HttpGet]
+        public async Task<IActionResult> GetAll([FromQuery] PostQueryFilter filter)
+        {
+            var response = await _usuarioService.GetAllAsync(filter);
+            return Ok(response);
+        }
+
     }
 }

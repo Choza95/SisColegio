@@ -17,8 +17,14 @@ namespace ApiCurso.Controllers
         {
             _cursoService = cursoService;
         }
-
         [HttpGet]
+        public async Task<IActionResult> GetAll([FromQuery] PostQueryFilter filter)
+        {
+            var response = await _cursoService.GetAllAsync(filter);
+            return Ok(response);
+        }
+
+        [HttpGet("ObtenerTodos")]
         public async Task<IActionResult> GetAll()
         {
             var lista = await _cursoService.GetAllAsync();
