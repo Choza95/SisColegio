@@ -6,8 +6,8 @@ namespace SisColegio.Interfaces
     {
         Task<IEnumerable<TrimestreDto>> GetAllAsync();
         Task<TrimestreDto?> GetByIdAsync(int id);
-        Task<TrimestreDto> AddAsync(TrimestreDto dto);
-        Task<bool> UpdateAsync(int id, TrimestreDto dto);
+        Task<TrimestreDto> AddAsync(TrimestreAddDto dto);
+        Task<bool> UpdateAsync(int id, TrimestreAddDto dto);
         Task<bool> DeleteAsync(int id);
     }
 }

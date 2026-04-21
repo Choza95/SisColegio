@@ -37,7 +37,7 @@ namespace ApiCurso.Controllers
 
         [HttpPost]
         [AllowAnonymous]
-        public async Task<IActionResult> Create([FromBody] CursoDto dto)
+        public async Task<IActionResult> Create([FromBody] CursoAddDto dto)
         {
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
@@ -49,7 +49,7 @@ namespace ApiCurso.Controllers
         }
 
         [HttpPut("{id:int}")]
-        public async Task<IActionResult> Update(int id, [FromBody] CursoDto dto)
+        public async Task<IActionResult> Update(int id, [FromBody] CursoAddDto dto)
         {
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);

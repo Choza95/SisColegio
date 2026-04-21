@@ -35,7 +35,7 @@ namespace SisColegio.Services
                 return null;
             return _mapper.Map<AsignacioneDto>(asignacione);
         }
-        public async Task<AsignacioneDto> AddAsync(AsignacioneDto dto)
+        public async Task<AsignacioneDto> AddAsync(AsignacioneAddDto dto)
         {
             var objeto = _mapper.Map<Asignacione>(dto);
 
@@ -45,10 +45,9 @@ namespace SisColegio.Services
             return _mapper.Map<AsignacioneDto>(objeto);
         }
 
-        public async Task<bool> UpdateAsync(int id, AsignacioneDto dto)
+        public async Task<bool> UpdateAsync(int id, AsignacioneAddDto dto)
         {
-            if (id != dto.Id)
-                return false;
+            
 
             var objeto = await _unitOfWork.Asignacione.GetByIdAsync(id);
             if (objeto == null)

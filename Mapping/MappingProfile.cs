@@ -8,19 +8,22 @@ namespace SisColegio.Mapping
     {
         public MappingProfile()
         {
-            CreateMap<Usuario, UsuarioDto>();
-            CreateMap<UsuarioCreateDto, Usuario>();
-            CreateMap<UsuarioUpdateDto, Usuario>();
-            CreateMap<Profesores, ProfesoresDto>();
-            CreateMap<Trimestre, TrimestreDto>();
-            CreateMap<Padre, PadreDto>();
-            CreateMap<Materia, MateriaDto>();
-            CreateMap<Inscripcione, InscripcionesDto>();
-            CreateMap<Evaluacione, EvaluacionesDto>();
-            CreateMap<Estudiante, EstudiantesDto>();
-            CreateMap<Disciplina, DisciplinaDto>();
-            CreateMap<Curso, CursoDto>();
-            CreateMap<Asignacione, AsignacioneDto>();
+            CreateMap<Usuario, UsuarioDto>().ReverseMap();
+            CreateMap<UsuarioCreateDto, Usuario>().ReverseMap();
+            CreateMap<UsuarioUpdateDto, Usuario>().ReverseMap();
+            CreateMap<Profesores, ProfesoresDto>().ReverseMap();
+            CreateMap<Trimestre, TrimestreDto>().ReverseMap();
+            CreateMap<TrimestreAddDto, Trimestre>().ReverseMap();
+            CreateMap<Padre, PadreDto>().ReverseMap();
+            CreateMap<Materia, MateriaDto>().ReverseMap();
+            CreateMap<Inscripcione, InscripcionesDto>().ReverseMap();
+            CreateMap<Evaluacione, EvaluacionesDto>().ReverseMap();
+            CreateMap<Estudiante, EstudiantesDto>().ReverseMap();
+            CreateMap<Disciplina, DisciplinaDto>().ReverseMap();
+            CreateMap<Curso, CursoDto>().ReverseMap();
+            CreateMap<Curso, CursoAddDto>().ReverseMap();
+            CreateMap<Asignacione, AsignacioneDto>().ReverseMap();
+            CreateMap<Asignacione, AsignacioneAddDto>().ReverseMap();
         }
     }
 }

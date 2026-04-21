@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using SisColegio.Dtos;
 using SisColegio.Interfaces;
 using SisColegio.Services;
 
@@ -34,29 +35,29 @@ namespace ApiAsignacione.Controllers
             return Ok(asignacione);
         }
 
-        //[HttpPost]
-        //[AllowAnonymous]
-        //public async Task<IActionResult> Create([FromBody] AsignacioneCreateDto dto)
-        //{
-        //    if (!ModelState.IsValid)
-        //        return BadRequest(ModelState);
+        [HttpPost]
+        [AllowAnonymous]
+        public async Task<IActionResult> Create([FromBody] AsignacioneAddDto dto)
+        {
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
 
-        //   var creado = await _asignacioneService.AddAsync(dto);
-        //   return CreatedAtAction(nameof(GetById), new { id = creado.Id }, creado);
-        //}
+            var creado = await _asignacioneService.AddAsync(dto);
+            return CreatedAtAction(nameof(GetById), new { id = creado.Id }, creado);
+        }
 
-        //[HttpPut("{id:int}")]
-        //public async Task<IActionResult> Update(int id, [FromBody] AsignacioneUpdateDto dto)
-        //{
-        //    if (!ModelState.IsValid)
-        //        return BadRequest(ModelState);
+        [HttpPut("{id:int}")]
+        public async Task<IActionResult> Update(int id, [FromBody] AsignacioneAddDto dto)
+        {
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
 
-        //  var actualizado = await _asignacioneService.UpdateAsync(id, dto);
-        // if (!actualizado)
-        //      return BadRequest(new { mensaje = "No se pudo actualizar la Asignación" });
+            var actualizado = await _asignacioneService.UpdateAsync(id, dto);
+            if (!actualizado)
+                return BadRequest(new { mensaje = "No se pudo actualizar la Asignación" });
 
-        //  return NoContent();
-        //}
+            return NoContent();
+        }
 
         [HttpDelete("{id:int}")]
         public async Task<IActionResult> Delete(int id)

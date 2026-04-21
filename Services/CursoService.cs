@@ -34,7 +34,7 @@ namespace SisColegio.Services
 
             return _mapper.Map<CursoDto>(curso);
         }
-        public async Task<CursoDto> AddAsync(CursoDto dto)
+        public async Task<CursoDto> AddAsync(CursoAddDto dto)
         {
             var objeto = _mapper.Map<Curso>(dto);
 
@@ -44,11 +44,9 @@ namespace SisColegio.Services
             return _mapper.Map<CursoDto>(objeto);
         }
 
-        public async Task<bool> UpdateAsync(int id, CursoDto dto)
+        public async Task<bool> UpdateAsync(int id, CursoAddDto dto)
         {
-            if (id != dto.Id)
-                return false;
-
+           
             var objeto = await _unitOfWork.Curso.GetByIdAsync(id);
             if (objeto == null)
                 return false;
