@@ -17,6 +17,6 @@
             set => _pageSize = value < 1 ? 10 : (value > 50 ? 50 : value);
         }
 
-        public string Buscar { get; set; } = string.Empty;
+        public string? Buscar { get; set; }
     }
 }

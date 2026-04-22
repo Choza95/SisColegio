@@ -73,7 +73,7 @@ namespace ApiUsuarios.Controllers
         public async Task<IActionResult> GetAll([FromQuery] PostQueryFilter filter)
         {
             var response = await _usuarioService.GetAllAsync(filter);
-            return Ok(response);
+            return Ok(response);    
         }
 
     }
