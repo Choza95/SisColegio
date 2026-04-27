@@ -45,7 +45,7 @@ namespace ApiTrimestre.Controllers
 
         [HttpPost]
         [AllowAnonymous]
-        public async Task<IActionResult> Create([FromBody] TrimestreAddDto dto)
+        public async Task<IActionResult> Create([FromBody] TrimestreDto dto)
         {
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
@@ -55,7 +55,7 @@ namespace ApiTrimestre.Controllers
         }
 
         [HttpPut("{id:int}")]
-        public async Task<IActionResult> Update(int id, [FromBody] TrimestreAddDto dto)
+        public async Task<IActionResult> Update(int id, [FromBody] TrimestreDto dto)
         {
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);

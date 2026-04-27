@@ -12,8 +12,7 @@ namespace SisColegio.Mapping
             CreateMap<UsuarioCreateDto, Usuario>().ReverseMap();
             CreateMap<UsuarioUpdateDto, Usuario>().ReverseMap();
             CreateMap<Profesores, ProfesoresDto>().ReverseMap();
-            CreateMap<Trimestre, TrimestreDto>().ReverseMap();
-            CreateMap<TrimestreAddDto, Trimestre>().ReverseMap();
+            CreateMap<Trimestre, TrimestreDto>().ReverseMap();  
             CreateMap<Padre, PadreDto>().ReverseMap();
             CreateMap<Materia, MateriaDto>().ReverseMap();
             CreateMap<Inscripcione, InscripcionesDto>().ReverseMap();
@@ -23,6 +22,7 @@ namespace SisColegio.Mapping
             CreateMap<Curso, CursoDto>().ReverseMap();
             CreateMap<Curso, CursoAddDto>().ReverseMap();
             CreateMap<Asignacione, AsignacioneDto>().ReverseMap();
+            CreateMap<Nota,  NotaDto>().ReverseMap();
             CreateMap<Asignacione, AsignacioneAddDto>().ReverseMap();
         }
     }

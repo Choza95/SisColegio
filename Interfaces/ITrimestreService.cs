@@ -7,8 +7,8 @@ namespace SisColegio.Interfaces
     {
         Task<IEnumerable<TrimestreDto>> GetAllAsync();
         Task<TrimestreDto?> GetByIdAsync(int id);
-        Task<TrimestreDto> AddAsync(TrimestreAddDto dto);
-        Task<bool> UpdateAsync(int id, TrimestreAddDto dto);
+        Task<TrimestreDto> AddAsync(TrimestreDto dto);
+        Task<bool> UpdateAsync(int id, TrimestreDto dto);
         Task<bool> DeleteAsync(int id);
         Task<ApiResponse<IEnumerable<TrimestreDto>>> GetAllAsync(PostQueryFilter filter);
     }

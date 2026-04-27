@@ -38,7 +38,7 @@ namespace SisColegio.Services
 
             return _mapper.Map<TrimestreDto>(trimestre);
         }
-        public async Task<TrimestreDto> AddAsync(TrimestreAddDto dto)
+        public async Task<TrimestreDto> AddAsync(TrimestreDto dto)
         {
             dto.FechaFin = dto.FechaFin ?? DateOnly.FromDateTime(DateTime.Now);
             dto.FechaInicio = dto.FechaInicio ?? DateOnly.FromDateTime(DateTime.Now);
@@ -50,7 +50,7 @@ namespace SisColegio.Services
             return _mapper.Map<TrimestreDto>(objeto);
         }
 
-        public async Task<bool> UpdateAsync(int id, TrimestreAddDto dto)
+        public async Task<bool> UpdateAsync(int id, TrimestreDto dto)
         {
           
 

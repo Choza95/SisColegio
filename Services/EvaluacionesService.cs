@@ -29,7 +29,7 @@ namespace SisColegio.Services
 
         public async Task<EvaluacionesDto?> GetByIdAsync(int id)
         {
-            var evaluaciones = await _unitOfWork.Nota.GetByIdAsync(id);
+            var evaluaciones = await _unitOfWork.Evaluacione.GetByIdAsync(id);
             if (evaluaciones == null)
                 return null;
 

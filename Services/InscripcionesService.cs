@@ -37,6 +37,7 @@ namespace SisColegio.Services
         }
         public async Task<InscripcionesDto> AddAsync(InscripcionesDto dto)
         {
+            dto.FechaInscrito = DateOnly.FromDateTime(DateTime.Now);
             var objeto = _mapper.Map<Inscripcione>(dto);
 
             await _unitOfWork.Inscripciones.AddAsync(objeto);
