@@ -1,7 +1,9 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using SisColegio.Dtos;
 using SisColegio.Interfaces;
+using SisColegio.Models;
 using SisColegio.Services;
 
 namespace ApiAsignacione.Controllers
@@ -40,6 +42,28 @@ namespace ApiAsignacione.Controllers
 
             return Ok(asignacione);
         }
+
+
+        [HttpGet("ObtenerPorProfesor")] 
+        public async Task<IActionResult> GetByProfesores(int id)
+        {
+            var asignacione = await _asignacioneService.GetByIdAsync(id);
+            if (asignacione == null)
+                return NotFound(new { mensaje = "Asignación no encontrada" });
+
+            return Ok(asignacione);
+        }
+
+
+        [HttpGet("AsignacionesProfesor/{idProfesor:int}")]
+        public IActionResult GetAsignacionesByProfesor(int idProfesor)
+        {
+            var lista = _asignacioneService.GetAsignacionByProfesor(idProfesor);
+            return Ok(lista);
+        }
+
+
+
 
         [HttpPost]
         [AllowAnonymous]

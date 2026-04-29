@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Microsoft.EntityFrameworkCore;
 using SisColegio.Data;
 using SisColegio.Dtos;
 using SisColegio.Interfaces;
@@ -13,6 +14,8 @@ namespace SisColegio.Services
         public readonly IUnitOfWork _unitOfWork;
         public readonly IMapper _mapper;
         public readonly IPasswordHasher _passwordHasher;
+  
+
 
         public AsignacioneService(
             IUnitOfWork unitOfWork,
@@ -36,6 +39,20 @@ namespace SisColegio.Services
                 return null;
             return _mapper.Map<AsignacioneDto>(asignacione);
         }
+
+
+        public  IEnumerable<AsignacioneDto?> GetAsignacionByProfesor(int idProfesor)
+        {
+            var asignaciones =  _unitOfWork.Asignacione.GetAllAsync().Result.Where(a => a.IdProfesor == idProfesor);
+
+            if (asignaciones == null)
+                return null;
+            return _mapper.Map< IEnumerable< AsignacioneDto> >(asignaciones);
+        }
+
+
+
+
         public async Task<AsignacioneDto> AddAsync(AsignacioneAddDto dto)
         {
             var objeto = _mapper.Map<Asignacione>(dto);
@@ -82,6 +99,8 @@ namespace SisColegio.Services
 
             return new ApiResponse<IEnumerable<AsignacioneDto>>(asignacionesDto, asignaciones.MetaData);
         }
+
+      
     }
 
 }

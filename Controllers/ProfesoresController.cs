@@ -32,8 +32,10 @@ namespace ApiProfesores.Controllers
             return Ok(lista);
         }
 
+
+
         [HttpGet("{id:int}")]
-        public async Task<IActionResult> GetById(int id)
+        public async Task<IActionResult> GetByIdAsync(int id)
         {
             var usuario = await _profesoresService.GetByIdAsync(id);
             if (usuario == null)
@@ -50,9 +52,9 @@ namespace ApiProfesores.Controllers
                 return BadRequest(ModelState);
 
             var creado = await _profesoresService.AddAsync(dto);
-            return CreatedAtAction(nameof(GetById), new { id = creado.Id }, creado);
+            return CreatedAtAction(nameof(GetByIdAsync), new { id = creado.Id }, creado);
         }
-
+                                                        
         [HttpPut("{id:int}")]
         public async Task<IActionResult> Update(int id, [FromBody] ProfesoresDto dto)
         {
