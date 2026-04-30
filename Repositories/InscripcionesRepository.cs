@@ -1,11 +1,12 @@
-﻿using SisColegio.Data;
+﻿using Microsoft.EntityFrameworkCore;
+using SisColegio.Data;
 using SisColegio.Dtos;
 using SisColegio.Interfaces;
 using SisColegio.Models;
 
 namespace SisColegio.Repositories
 {
-    public class InscripcionesRepository : GenericRepository<Inscripcione>, IInscripcionesRepository
+    public class InscripcionesRepository : GenericRepository<Inscripcione>,     
     {
         public InscripcionesRepository(MiBaseContext context) : base(context)
         {
@@ -30,6 +31,15 @@ namespace SisColegio.Repositories
             return await PagedList<Inscripcione>.CreateAsync(query, filter.PageNumber, filter.PageSize);
 
 
+        }
+
+        public IEnumerable<Inscripcione?> GetinscripcionesByEstudiante(int idEstudiante)
+        {
+            var inscripciones = _context.Inscripciones.Where(a => a.IdEstudiante == idEstudiante && a.Borrado == false).Include(a => a.IdCursoNavigation);
+
+            if (inscripciones == null)
+                return null;
+            return inscripciones;
         }
 
 

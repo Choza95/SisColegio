@@ -8,6 +8,7 @@ namespace SisColegio.Interfaces
     {
         Task<IEnumerable<InscripcionesDto>> GetAllAsync();
         Task<InscripcionesDto?> GetByIdAsync(int id);
+        IEnumerable<InscripcionesDto?> GetinscripcionesByEstudiante(int idEstudiante);
         Task<InscripcionesDto> AddAsync(InscripcionesDto dto);
         Task<bool> UpdateAsync(int id, InscripcionesDto dto);
         Task<bool> DeleteAsync(int id);

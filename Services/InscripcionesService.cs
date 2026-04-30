@@ -35,6 +35,17 @@ namespace SisColegio.Services
 
             return _mapper.Map<InscripcionesDto>(inscripciones);
         }
+
+        public IEnumerable<InscripcionesDto?> GetinscripcionesByEstudiante(int idEstudiante)
+        {
+            var inscripciones = _unitOfWork.Inscripciones.GetinscripcionesByEstudiante(idEstudiante);
+
+            if (inscripciones == null)
+                return null;
+            return _mapper.Map<IEnumerable<InscripcionesDto>>(inscripciones);
+        }
+
+
         public async Task<InscripcionesDto> AddAsync(InscripcionesDto dto)
         {
             dto.FechaInscrito = DateOnly.FromDateTime(DateTime.Now);

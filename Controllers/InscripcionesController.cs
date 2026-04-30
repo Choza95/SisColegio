@@ -43,6 +43,14 @@ namespace ApiInscripciones.Controllers
         }
 
 
+        [HttpGet("inscripciones/{idEstudiante:int}")]
+        public IActionResult GetinscripcionesByEstudiante(int idEstudiante)
+        {
+            var lista = _inscripcionesService.GetinscripcionesByEstudiante(idEstudiante);
+            return Ok(lista);
+        }
+
+
         [HttpPost]
         [AllowAnonymous]
         public async Task<IActionResult> Create([FromBody] InscripcionesDto dto)
