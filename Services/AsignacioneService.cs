@@ -43,12 +43,13 @@ namespace SisColegio.Services
 
         public  IEnumerable<AsignacioneDto?> GetAsignacionByProfesor(int idProfesor)
         {
-            var asignaciones =  _unitOfWork.Asignacione.GetAllAsync().Result.Where(a => a.IdProfesor == idProfesor);
+            var asignaciones =  _unitOfWork.Asignacione.GetAsignacionByProfesor(idProfesor);
 
             if (asignaciones == null)
                 return null;
             return _mapper.Map< IEnumerable< AsignacioneDto> >(asignaciones);
         }
+
 
 
 

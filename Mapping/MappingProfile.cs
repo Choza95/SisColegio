@@ -22,6 +22,19 @@ namespace SisColegio.Mapping
             CreateMap<Curso, CursoDto>().ReverseMap();
             CreateMap<Curso, CursoAddDto>().ReverseMap();
             CreateMap<Asignacione, AsignacioneDto>().ReverseMap();
+
+            CreateMap<Asignacione, AsignacioneDto>()
+                .ForMember(dest => dest.NombreCurso,
+                    opt => opt.MapFrom(src => src.IdCursoNavigation != null
+                        ? src.IdCursoNavigation.Nombre
+                        : null))
+                .ForMember(dest => dest.NombreMateria,
+                    opt => opt.MapFrom(src => src.IdMateriaNavigation != null
+                        ? src.IdMateriaNavigation.Nombre
+                        : null));
+
+
+
             CreateMap<Nota,  NotaDto>().ReverseMap();
             CreateMap<Asignacione, AsignacioneAddDto>().ReverseMap();
         }

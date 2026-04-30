@@ -42,6 +42,7 @@ namespace ApiInscripciones.Controllers
             return Ok(inscripciones);
         }
 
+
         [HttpPost]
         [AllowAnonymous]
         public async Task<IActionResult> Create([FromBody] InscripcionesDto dto)

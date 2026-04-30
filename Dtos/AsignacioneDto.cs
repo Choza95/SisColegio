@@ -8,5 +8,9 @@
         public int? Id { get; set; }
 
         public int? IdCurso { get; set; }
+
+        public  string? NombreCurso { get; set; } 
+        public  string? NombreMateria { get; set; } 
+
     }
 }

@@ -24,9 +24,15 @@ namespace SisColegio.Repositories
                     x.IdCurso.ToString().ToLower().Contains(buscar) ||
                     x.IdEstudiante.ToString().ToLower().Contains(buscar) ||
                     x.Id.ToString().ToLower().Contains(buscar));
+
             }
 
             return await PagedList<Inscripcione>.CreateAsync(query, filter.PageNumber, filter.PageSize);
+
+
         }
+
+
+
     }
 }
