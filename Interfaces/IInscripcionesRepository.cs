@@ -8,5 +8,7 @@ namespace SisColegio.Interfaces
     {
         Task<PagedList<Inscripcione>> GetAllAsync(PostQueryFilter filter);
         IEnumerable<Inscripcione?> GetinscripcionesByEstudiante(int idEstudiante);
+
+        IEnumerable<Inscripcione?> GetinscripcionesByCurso(int idCurso);
     }
 }

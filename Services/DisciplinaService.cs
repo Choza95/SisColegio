@@ -36,6 +36,8 @@ namespace SisColegio.Services
                 return null;
             return _mapper.Map<DisciplinaDto>(disciplina);
         }
+
+       
         public async Task<DisciplinaDto> AddAsync(DisciplinaDto dto)
         {
             var objeto = _mapper.Map<Disciplina>(dto);
@@ -85,6 +87,8 @@ namespace SisColegio.Services
 
             return new ApiResponse<IEnumerable<DisciplinaDto>>(disciplinasDto, disciplinas.MetaData);
         }
+
+
 
 
     }

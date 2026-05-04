@@ -44,5 +44,16 @@ namespace SisColegio.Repositories
 
 
 
+        public IEnumerable<Inscripcione?> GetinscripcionesByCurso(int idCurso)
+        {
+            var inscripciones = _context.Inscripciones.Where(a => a.IdCurso == idCurso && a.Borrado == false).Include(a => a.IdEstudianteNavigation);
+
+            if (inscripciones == null)
+                return null;
+            return inscripciones;
+        }
+
+
+
     }
 }

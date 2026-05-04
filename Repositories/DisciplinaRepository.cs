@@ -1,4 +1,5 @@
-﻿using SisColegio.Data;
+﻿using Microsoft.EntityFrameworkCore;
+using SisColegio.Data;
 using SisColegio.Dtos;
 using SisColegio.Interfaces;
 using SisColegio.Models;

@@ -13,5 +13,7 @@ namespace SisColegio.Interfaces
         Task<bool> UpdateAsync(int id, InscripcionesDto dto);
         Task<bool> DeleteAsync(int id);
         Task<ApiResponse<IEnumerable<InscripcionesDto>>> GetAllAsync(PostQueryFilter filter);
+
+        IEnumerable<InscripcionesCursoDto?> GetinscripcionesByCurso(int idCurso);
     }
 }

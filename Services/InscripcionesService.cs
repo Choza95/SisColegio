@@ -95,5 +95,14 @@ namespace SisColegio.Services
         }
 
 
+        public IEnumerable<InscripcionesCursoDto?> GetinscripcionesByCurso(int idCurso)
+        {
+            var inscripciones = _unitOfWork.Inscripciones.GetinscripcionesByCurso(idCurso);
+
+            if (inscripciones == null)
+                return null;
+            return _mapper.Map<IEnumerable<InscripcionesCursoDto>>(inscripciones);
+        }
+
     }
 }
