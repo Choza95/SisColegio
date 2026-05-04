@@ -6,7 +6,7 @@ using SisColegio.Models;
 
 namespace SisColegio.Repositories
 {
-    public class InscripcionesRepository : GenericRepository<Inscripcione>,     
+    public class InscripcionesRepository : GenericRepository<Inscripcione>   , IInscripcionesRepository
     {
         public InscripcionesRepository(MiBaseContext context) : base(context)
         {
