@@ -8,6 +8,7 @@
         public ApiResponse(T data, MetaData meta)
         {
             Data = data;
+
             Meta = meta;
         }
 
